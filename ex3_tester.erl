@@ -11,7 +11,9 @@ test() ->
     matElemMulTester(),
     filterTester(fun ex3:filter_g/2),
     filterTester(fun ex3:filter_p/2),
-    evenTester()
+    evenTester(),
+    fibTester(fun ex3:fiboR/1),
+    fibTester(fun ex3:fiboT/1)
     .
 
 %% start auxilary functions
@@ -65,4 +67,9 @@ evenTester() ->
                  {F, [[1,2,3,4,5,6,7,8,9]], [2,4,6,8]},
                  {F, [[1]], []}]).
 
+fibTester(F) ->
+    assertApply([{F, [4], 3},
+                 {F, [1], 1},
+                 {F, [2], 2},
+                 {F, [10], 55}]).
 
