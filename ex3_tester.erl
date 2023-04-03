@@ -8,7 +8,9 @@ test() ->
     sortResTester(),
     sortTester(fun ex3:mSort/1),
     sortTester(fun ex3:qSort/1),
-    matElemMulTester()
+    matElemMulTester(),
+    filterTester(fun ex3:filter_g/2),
+    filterTester(fun ex3:filter_p/2)
     .
 
 %% start auxilary functions
@@ -48,5 +50,11 @@ matElemMulTester() ->
     ResMat = [[8.0,18.0,30.0],[44.0,60.0,78.0],[70.0,90.0,112.0]],
     assertApply([{F, [Mat1, Mat2], ResMat}]).
 
-
+filterTester(F) ->
+    assertApply([{F, [[1,a,2,b,c,3,4,5], numbers], [a,b,c]},
+                 {F, [[1,a,2,b,c,3,4,5], atoms], [1,2,3,4,5]},
+                 {F, [[1,elem,elem,c,b,a,2,3,4,5], atoms], [1,2,3,4,5]},
+                 {F, [[1,elem,elem,c,b,a,2,3,4,5], numbers], [elem,elem,c,b,a]},
+                 {F, [[1.0,elem,1.5,1.789,5], numbers], [elem]},
+                 {F, [[1.0,elem,1.5,1.789,5], atoms], [1.0,1.5,1.789,5]}]).
 
