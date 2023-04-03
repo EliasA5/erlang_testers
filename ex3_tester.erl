@@ -70,6 +70,6 @@ evenTester() ->
 fibTester(F) ->
     assertApply([{F, [4], 3},
                  {F, [1], 1},
-                 {F, [2], 2},
+                 {F, [2], 1},
                  {F, [10], 55}]).
 
