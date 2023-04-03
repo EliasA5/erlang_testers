@@ -10,7 +10,8 @@ test() ->
     sortTester(fun ex3:qSort/1),
     matElemMulTester(),
     filterTester(fun ex3:filter_g/2),
-    filterTester(fun ex3:filter_p/2)
+    filterTester(fun ex3:filter_p/2),
+    evenTester()
     .
 
 %% start auxilary functions
@@ -57,4 +58,11 @@ filterTester(F) ->
                  {F, [[1,elem,elem,c,b,a,2,3,4,5], numbers], [elem,elem,c,b,a]},
                  {F, [[1.0,elem,1.5,1.789,5], numbers], [elem]},
                  {F, [[1.0,elem,1.5,1.789,5], atoms], [1.0,1.5,1.789,5]}]).
+
+evenTester() ->
+    F = fun ex3:even/1,
+    assertApply([{F, [[]], []},
+                 {F, [[1,2,3,4,5,6,7,8,9]], [2,4,6,8]},
+                 {F, [[1]], []}]).
+
 
