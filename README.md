@@ -14,6 +14,10 @@ cd erlang_testers
 git checkout -b {branch name} --track origin/{branch name}
 cd ..
 ```
+and you can update it to the latest version using:
+```
+git submodule update --remote
+```
 
 and to run it:
 ```erlang
