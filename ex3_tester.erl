@@ -18,13 +18,6 @@ test() ->
 
 %% start auxilary functions
 
-assertApply1([]) -> ok;
-assertApply1([{F, A, R}|T]) ->
-    assert(apply(F,[A,lc]), R),
-    assert(apply(F,[A,pm]), R),
-    assert(apply(F,[A,lm]), R),
-    assertApply1(T).
-
 assertApply([]) -> ok;
 assertApply([{F, A, R} | T]) ->
     assert(apply(F, A), R),
@@ -38,7 +31,10 @@ assert(A,B)->
 %% end of auxilary functions
 
 sortResTester() ->
-    assertApply1( [ {fun ex3:sortRes/2, [2,3,9,5,6,7,8,1,4,10], [3,6,9,1,4,7,10,2,5,8]} ] ).
+    assertApply( [ {fun ex3:sortRes/2, [[2,3,9,5,6,7,8,1,4,10], lc], [3,6,9,1,4,7,10,2,5,8]} ] ),
+    assertApply( [ {fun ex3:sortRes/2, [[2,3,9,5,6,7,8,1,4,10], pm], [3,6,9,1,4,7,10,2,5,8]} ] ),
+    assertApply( [ {fun ex3:sortRes/2, [[2,3,9,5,6,7,8,1,4,10], lm], [3,6,9,1,4,7,10,2,5,8]} ] )
+    .
 
 sortTester(F) ->
     assertApply( [{F, [ [1,2,3,1,3,4,7,4] ], [1,1,2,3,3,4,4,7]}, 
